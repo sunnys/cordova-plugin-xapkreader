@@ -92,6 +92,16 @@ public class XAPKReader extends CordovaPlugin {
                 }
             }
         }
+        /* Added by me to make ger action work I don't know if it will work*/
+        int mainVersionId = cordova.getActivity().getResources().getIdentifier("main_version", "integer", cordova.getActivity().getPackageName());
+        mainVersion = cordova.getActivity().getResources().getInteger(mainVersionId);
+
+        int patchVersionId = cordova.getActivity().getResources().getIdentifier("patch_version", "integer", cordova.getActivity().getPackageName());
+        patchVersion = cordova.getActivity().getResources().getInteger(patchVersionId);
+
+        int fileSizeId = cordova.getActivity().getResources().getIdentifier("file_size", "integer", cordova.getActivity().getPackageName());
+        fileSize = cordova.getActivity().getResources().getInteger(fileSizeId);
+        
         
         // Send data to the ContentProvider instance.
         ContentResolver cr = cordova.getActivity().getApplicationContext().getContentResolver();
