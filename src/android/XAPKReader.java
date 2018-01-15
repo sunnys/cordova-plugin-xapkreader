@@ -16,6 +16,11 @@ import android.util.Base64;
 import android.util.Log;
 import android.content.res.AssetFileDescriptor;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URLConnection;
+
 import org.json.JSONArray;
 import android.content.pm.PackageManager;
 import android.Manifest;
@@ -31,7 +36,15 @@ public class XAPKReader extends CordovaPlugin {
 
     // Request code used when we do runtime permissions requests during initialization.
     public static final int STARTUP_REQ_CODE = 0;
+    
+    private static final String LOG_TAG = "XAPKReader";
+    
+    private int mainVersion = 1;
 
+    private int patchVersion = 1;
+
+    private long fileSize = 0L;
+    
     @Override
     public void initialize(final CordovaInterface cordova, CordovaWebView webView) {
 
