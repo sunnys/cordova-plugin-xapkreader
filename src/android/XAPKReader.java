@@ -211,8 +211,8 @@ public class XAPKReader extends CordovaPlugin {
         }
 
         // Find file in ExpansionFile
-        /*
-        AssetFileDescriptor fileDescriptor = expansionFile.getAssetFileDescriptor(filename);
+        AssetFileDescriptor fileDescriptor = XAPKProvider.openAssetFile(filename, filename);
+        //AssetFileDescriptor fileDescriptor = expansionFile.getAssetFileDescriptor(filename);
         String mFName = expansionFile.getZipFileName ();
         if (null == fileDescriptor) {
             Log.e(LOG_TAG, "File not found (" + filename + "), in " + mFName);
