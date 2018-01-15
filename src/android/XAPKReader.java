@@ -201,7 +201,7 @@ public class XAPKReader extends CordovaPlugin {
         });
     }
     
-    private PluginResult readFile(Context ctx, String filename, int mainVersion, int patchVersion, final int resultType) throws IOException {
+    private static PluginResult readFile(Context ctx, String filename, int mainVersion, int patchVersion, final int resultType) throws IOException {
         // Get APKExpensionFile
         XAPKZipResourceFile expansionFile = XAPKExpansionSupport.getAPKExpansionZipFile(ctx, mainVersion, patchVersion);
 
@@ -211,12 +211,12 @@ public class XAPKReader extends CordovaPlugin {
         }
 
         // Find file in ExpansionFile
-        Uri uri = Uri.parse(filename);
-        AssetFileDescriptor fileDescriptor = XAPKProvider.openAssetFile(uri, filename);
-        //AssetFileDescriptor fileDescriptor = expansionFile.getAssetFileDescriptor(filename);
+        //Uri uri = Uri.parse(filename);
+        //AssetFileDescriptor fileDescriptor = XAPKProvider.openAssetFile(uri, filename);
+        AssetFileDescriptor fileDescriptor = expansionFile.getAssetFileDescriptor(filename);
         //String mFName = expansionFile.getZipFileName ();
         if (null == fileDescriptor) {
-            Log.e(LOG_TAG, "File not found (" + filename + "), in ");
+            Log.e(LOG_TAG, "File not found (" + filename + "), in " + expansionFile);
             throw new IOException("File not found (" + filename + "), in ");
         }
         // Read file
