@@ -201,7 +201,7 @@ public class XAPKReader extends CordovaPlugin {
         });
     }
     
-    private static PluginResult readFile(Context ctx, String filename, int mainVersion, int patchVersion, final int resultType) throws IOException {
+    private PluginResult readFile(Context ctx, String filename, int mainVersion, int patchVersion, final int resultType) throws IOException {
         // Get APKExpensionFile
         XAPKZipResourceFile expansionFile = XAPKExpansionSupport.getAPKExpansionZipFile(ctx, mainVersion, patchVersion);
 
