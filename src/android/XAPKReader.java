@@ -145,7 +145,7 @@ public class XAPKReader extends CordovaPlugin {
         try {
             PluginResult result = null;
             boolean success = false;
-            if (action.equals("get")) {
+            /*if (action.equals("get")) {
                 final String filename = args.getString(0);
                 final Context ctx = cordova.getActivity().getApplicationContext();
                 cordova.getThreadPool().execute(new Runnable() {
@@ -161,7 +161,8 @@ public class XAPKReader extends CordovaPlugin {
                     }
                 });
                 return true;
-            } else if (XAPKReader.ACTION_DOWNLOAD_IF_AVAIlABLE.equals(action)) {
+            } else */
+            if (XAPKReader.ACTION_DOWNLOAD_IF_AVAIlABLE.equals(action)) {
                 downloadExpansionIfAvailable();
                 result = new PluginResult(PluginResult.Status.OK);
                 success = true;
@@ -212,6 +213,7 @@ public class XAPKReader extends CordovaPlugin {
      * @param filename The filename to read
      * @return         PluginResult
      */
+    /*
     private static PluginResult readFile(Context ctx, String filename, int mainVersion, int patchVersion, final int resultType) throws IOException {
         // Get APKExpensionFile
         XAPKZipResourceFile expansionFile = XAPKExpansionSupport.getAPKExpansionZipFile(ctx, mainVersion, patchVersion);
@@ -261,4 +263,5 @@ public class XAPKReader extends CordovaPlugin {
 
         return result;
     }
+    */
 }
