@@ -218,7 +218,6 @@ public class XAPKReader extends CordovaPlugin {
             Log.e(LOG_TAG, "File not found (" + filename + "), in " + mFName);
             throw new IOException("File not found (" + filename + "), in " + mFName);
         }
-        */
         // Read file
         //InputStream inputStream = fileDescriptor.createInputStream();
         InputStream inputStream = expansionFile.getInputStream(filename);
