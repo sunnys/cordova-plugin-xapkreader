@@ -93,7 +93,7 @@ public class XAPKReader extends CordovaPlugin {
             }
         }
         /* Added by me to make ger action work I don't know if it will work*/
-        int mainVersionId = cordova.getActivity().getResources().getIdentifier("main_version", "integer", cordova.getActivity().getPackageName());
+        int mainVersionId = cordova.getActivity().getResources().getIdentifier("xapk_main_version", "integer", cordova.getActivity().getPackageName());
         mainVersion = cordova.getActivity().getResources().getInteger(mainVersionId);
 
         //int patchVersionId = cordova.getActivity().getResources().getIdentifier("patch_version", "integer", cordova.getActivity().getPackageName());
