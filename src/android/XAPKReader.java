@@ -221,7 +221,7 @@ public class XAPKReader extends CordovaPlugin {
         */
         // Read file
         //InputStream inputStream = fileDescriptor.createInputStream();
-        InputStream inputStream = expansionFile.getInputStream(pathToFileInsideZip);
+        InputStream inputStream = expansionFile.getInputStream(filename);
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int read = 0;
