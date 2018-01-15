@@ -220,8 +220,8 @@ public class XAPKReader extends CordovaPlugin {
             throw new IOException("File not found (" + filename + "), in ");
         }
         // Read file
-        //InputStream inputStream = fileDescriptor.createInputStream();
-        InputStream inputStream = expansionFile.getInputStream(filename);
+        InputStream inputStream = fileDescriptor.createInputStream();
+        //InputStream inputStream = expansionFile.getInputStream(filename);
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
         int read = 0;
