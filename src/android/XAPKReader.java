@@ -213,10 +213,10 @@ public class XAPKReader extends CordovaPlugin {
         // Find file in ExpansionFile
         AssetFileDescriptor fileDescriptor = XAPKProvider.openAssetFile(filename, filename);
         //AssetFileDescriptor fileDescriptor = expansionFile.getAssetFileDescriptor(filename);
-        String mFName = expansionFile.getZipFileName ();
+        //String mFName = expansionFile.getZipFileName ();
         if (null == fileDescriptor) {
-            Log.e(LOG_TAG, "File not found (" + filename + "), in " + mFName);
-            throw new IOException("File not found (" + filename + "), in " + mFName);
+            Log.e(LOG_TAG, "File not found (" + filename + "), in ");
+            throw new IOException("File not found (" + filename + "), in ");
         }
         // Read file
         //InputStream inputStream = fileDescriptor.createInputStream();
