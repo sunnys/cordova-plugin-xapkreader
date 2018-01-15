@@ -12,6 +12,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.net.Uri;
+import android.util.Base64;
+import android.util.Log;
+import android.content.res.AssetFileDescriptor;
+
 import org.json.JSONArray;
 import android.content.pm.PackageManager;
 import android.Manifest;
