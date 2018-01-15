@@ -158,4 +158,54 @@ public class XAPKReader extends CordovaPlugin {
             }
         });
     }
+    
+    private static PluginResult readFile(Context ctx, String filename, int mainVersion, int patchVersion, final int resultType) throws IOException {
+        // Get APKExpensionFile
+        XAPKZipResourceFile expansionFile = XAPKExpansionSupport.getAPKExpansionZipFile(ctx, mainVersion, patchVersion);
+
+        if (null == expansionFile) {
+            Log.e(LOG_TAG, "APKExpansionFile not found.");
+            throw new IOException("APKExpansionFile not found.");
+        }
+
+        // Find file in ExpansionFile
+        AssetFileDescriptor fileDescriptor = expansionFile.getAssetFileDescriptor(filename);
+
+        if (null == fileDescriptor) {
+            Log.e(LOG_TAG, "File not found (" + filename + ").");
+            throw new IOException("File not found (" + filename + ").");
+        }
+
+        // Read file
+        InputStream inputStream = fileDescriptor.createInputStream();
+        ByteArrayOutputStream os = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int read = 0;
+        while ((read = inputStream.read(buffer, 0, buffer.length)) != -1) {
+            os.write(buffer, 0, read);
+        }
+        os.flush();
+
+        // get file content type
+        String contentType = URLConnection.guessContentTypeFromStream(inputStream);
+
+        PluginResult result;
+        switch (resultType) {
+            case PluginResult.MESSAGE_TYPE_STRING:
+                result = new PluginResult(PluginResult.Status.OK, os.toString("UTF-8"));
+                break;
+            case PluginResult.MESSAGE_TYPE_ARRAYBUFFER:
+                result = new PluginResult(PluginResult.Status.OK, os.toByteArray());
+                break;
+            case PluginResult.MESSAGE_TYPE_BINARYSTRING:
+                result = new PluginResult(PluginResult.Status.OK, os.toByteArray(), true);
+                break;
+            default: // Base64.
+                byte[] base64 = Base64.encode(os.toByteArray(), Base64.NO_WRAP);
+                String s = "data:" + contentType + ";base64," + new String(base64, "US-ASCII");
+                result = new PluginResult(PluginResult.Status.OK, s);
+        }
+
+        return result;
+    }
 }
