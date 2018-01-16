@@ -221,7 +221,7 @@ public class XAPKReader extends CordovaPlugin {
         //}
         // Read file
         //InputStream inputStream = fileDescriptor.createInputStream();
-        filename = filename.replace("content://com.quodeck/","");
+        filename = filename.replace("content://","").substring(filename.replace("content://","").indexOf('/') + 1);
         InputStream inputStream = expansionFile.getInputStream(filename);
         ByteArrayOutputStream os = new ByteArrayOutputStream();
         byte[] buffer = new byte[1024];
