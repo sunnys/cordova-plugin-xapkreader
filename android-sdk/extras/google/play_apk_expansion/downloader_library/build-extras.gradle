@@ -1,5 +1,6 @@
 dependencies {
-    implementation project(':com.flyingsoftgames.xapkreader:library')
+    debugCompile project(path: ':com.flyingsoftgames.xapkreader:library',configuration: "debug")
+    releaseCompile project(path: ':com.flyingsoftgames.xapkreader:library',configuration: "release")
 }
 
 android {
